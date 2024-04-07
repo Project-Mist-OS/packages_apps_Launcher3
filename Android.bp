@@ -182,8 +182,7 @@ android_library {
         "libGoogleFeed",
         "SettingsLib",
         "view_capture",
-        "animationlib",
-        "org.lineageos.platform",
+        "animationlib"
     ],
     manifest: "AndroidManifest-common.xml",
     sdk_version: "current",
