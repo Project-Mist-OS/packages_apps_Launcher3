@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:background="@drawable/everest_preference_about"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="@drawable/mist_card"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="10dp"
     android:paddingEnd="6dp"
-    android:paddingStart="20dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:paddingStart="20dp">
 
     <LinearLayout
         android:gravity="center_vertical"
@@ -32,7 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:textSize="13sp"
+                android:maxLines="1"
+                android:textSize="17sp"
                 android:textColor="@color/op_control_text_color_primary" />
 
             <TextView
@@ -57,10 +59,9 @@
 
             <ImageView
                 android:id="@android:id/icon"
-                android:padding="1.5dip"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:tint="?android:attr/colorControlNormal"
+                android:tint="?android:attr/colorAccent"
                 app:maxHeight="52.5dp"
                 app:maxWidth="52.5dp" />
 
