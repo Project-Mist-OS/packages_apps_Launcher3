@@ -24,8 +24,17 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
 
+    <com.android.launcher3.util.BlurWallpaperView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:elevation="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:scaleType="centerCrop" />
+
     <ImageView
-    	android:id="@id/mist_logo"
+    	android:id="@+id/mist_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="36dp"
@@ -64,22 +73,6 @@
             android:textSize="12.5sp"
             android:textColor="@color/op_control_text_color_primary"
             android:text="@string/about_app_subtitle" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="@string/app_info_version"
-            android:textSize="13.5sp"
-            android:textColor="?android:attr/colorAccent" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
-            android:text="@string/about_app_version"
-            android:textSize="12.5sp"
-            android:textColor="@color/op_control_text_color_primary" />
             
     </LinearLayout>
 </RelativeLayout>

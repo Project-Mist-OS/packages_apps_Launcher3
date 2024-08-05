@@ -423,7 +423,6 @@
     <!-- About info -->
     <string name="about_app_title" translatable="false">Mist Launcher</string>
     <string name="about_app_subtitle">Based on AOSP Launcher3</string>
-    <string name="about_app_version">1.1</string>
     <string name="about_thanks_cat">Special thanks to</string>
     <string name="about">About</string>
     <string name="about_summary">Info about the Mist Launcher</string>
