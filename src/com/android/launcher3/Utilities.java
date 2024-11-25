@@ -1126,9 +1126,13 @@ public final class Utilities {
         SharedPreferences prefs = LauncherPrefs.getPrefs(context.getApplicationContext());
         return prefs.getBoolean(KEY_RECENTS_MEMINFO, false);
    }
+   
+    public static int getLauncher() {
+        return android.os.SystemProperties.getInt("persist.sys.default_launcher", 0);
+    }
 
     public static int getRecentsOpacity(Context context) {
-        return 0;
+        return getLauncher() == 2 ? 100 : 0;
     }
 
     public static int getAllAppsOpacity(Context context) {
