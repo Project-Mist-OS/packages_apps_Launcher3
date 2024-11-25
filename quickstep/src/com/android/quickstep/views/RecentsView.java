@@ -848,10 +848,11 @@ public abstract class RecentsView<CONTAINER_TYPE extends Context & RecentsViewCo
 
         mEmptyIcon = context.getDrawable(R.drawable.ic_empty_recents);
         mEmptyIcon.setCallback(this);
-        mEmptyMessage = context.getText(R.string.recents_empty_message);
+        int defaultLauncher = android.os.SystemProperties.getInt("persist.sys.default_launcher", 0);
+        mEmptyMessage = defaultLauncher == 2 ? "" : context.getText(R.string.recents_empty_message);
         mEmptyMessagePaint = new TextPaint();
-        mEmptyIcon.setTint(Color.WHITE);
-        mEmptyMessagePaint.setColor(Color.WHITE);
+        mEmptyIcon.setTint(defaultLauncher == 2 ? Color.TRANSPARENT : Color.WHITE);
+        mEmptyMessagePaint.setColor(defaultLauncher == 2 ? Color.TRANSPARENT : Color.WHITE);
         mEmptyMessagePaint.setTextSize(getResources()
                 .getDimension(R.dimen.recents_empty_message_text_size));
         mEmptyMessagePaint.setTypeface(Typeface.create(Themes.getDefaultBodyFont(context),
