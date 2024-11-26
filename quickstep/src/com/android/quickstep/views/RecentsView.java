@@ -99,13 +99,11 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.os.VibrationEffect;
-import android.provider.Settings;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -127,7 +125,6 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.Interpolator;
 import android.widget.ListView;
-import android.widget.Button;
 import android.widget.OverScroller;
 import android.widget.Toast;
 import android.window.PictureInPictureSurfaceTransaction;
@@ -233,7 +230,6 @@ import com.android.wm.shell.shared.DesktopModeStatus;
 
 import kotlin.Unit;
 
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -771,12 +767,6 @@ public abstract class RecentsView<CONTAINER_TYPE extends Context & RecentsViewCo
     @Nullable
     private DesktopRecentsTransitionController mDesktopRecentsTransitionController;
 
-    Drawable mLockedDrawable;
-    Drawable mUnlockedDrawable;
-    List<String> mLockedTasks = new ArrayList<>();
-    private Button mLockButtonView;
-    private String mStartPkg, mEndPkg;
-
     /**
      * Keeps track of the desktop task. Optional and only present when the feature flag is enabled.
      */
@@ -879,16 +869,6 @@ public abstract class RecentsView<CONTAINER_TYPE extends Context & RecentsViewCo
 
         // Initialize quickstep specific cache params here, as this is constructed only once
         mContainer.getViewCache().setCacheSize(R.layout.digital_wellbeing_toast, 5);
-
-        String lockedTasks = Settings.System.getStringForUser(
-                    context.getContentResolver(),
-                    "recents_locked_tasks",
-                    UserHandle.USER_CURRENT);
-        if (mLockedTasks.size() == 0 && lockedTasks != null && !lockedTasks.isEmpty()) {
-            mLockedTasks = new ArrayList<String>(Arrays.asList(lockedTasks.split(",")));
-        }
-        mLockedDrawable = context.getDrawable(R.drawable.recents_locked);
-        mUnlockedDrawable = context.getDrawable(R.drawable.recents_unlocked);
 
         mTintingColor = getForegroundScrimDimColor(context);
 
@@ -1132,8 +1112,6 @@ public abstract class RecentsView<CONTAINER_TYPE extends Context & RecentsViewCo
         mSplitSelectStateController = splitController;
         mDesktopRecentsTransitionController = desktopRecentsTransitionController;
         mMemInfoView = memInfoView;
-        mLockButtonView = (Button) mActionsView.findViewById(R.id.action_lock);
-        mLockButtonView.setOnClickListener(this::lockCurrentTask);
     }
 
     public SplitSelectStateController getSplitSelectController() {
@@ -1542,8 +1520,8 @@ public abstract class RecentsView<CONTAINER_TYPE extends Context & RecentsViewCo
     @Override
     protected void onPageBeginTransition() {
         super.onPageBeginTransition();
-        if (getCurrentPageTaskView() != null) {
-            mStartPkg = getCurrentPageTaskView().getTask().key.getPackageName();
+        if (!mContainer.getDeviceProfile().isTablet) {
+            mActionsView.updateDisabledFlags(OverviewActionsView.DISABLED_SCROLLING, true);
         }
         if (mOverviewStateEnabled) { // only when in overview
             InteractionJankMonitorWrapper.begin(/* view= */ this, Cuj.CUJ_RECENTS_SCROLLING);
@@ -1553,8 +1531,10 @@ public abstract class RecentsView<CONTAINER_TYPE extends Context & RecentsViewCo
     @Override
     protected void onPageEndTransition() {
         super.onPageEndTransition();
-        if (getCurrentPageTaskView() != null) {
-            mEndPkg = getCurrentPageTaskView().getTask().key.getPackageName();
+        ActiveGestureLog.INSTANCE.addLog(
+                "onPageEndTransition: current page index updated", getNextPage());
+        if (isClearAllHidden() && !mContainer.getDeviceProfile().isTablet) {
+            mActionsView.updateDisabledFlags(OverviewActionsView.DISABLED_SCROLLING, false);
         }
         if (getNextPage() > 0) {
             setSwipeDownShouldLaunchApp(true);
@@ -1977,8 +1957,6 @@ public abstract class RecentsView<CONTAINER_TYPE extends Context & RecentsViewCo
             if (i == stubRunningTaskIndex) {
                 continue;
             }
-            TaskView tv = getTaskViewAt(i);
-            if (mLockedTasks.contains(tv.getTask().key.getPackageName())) continue;
             removeView(requireTaskViewAt(i));
         }
         if (getTaskViewCount() == 0 && indexOfChild(mClearAllButton) != -1) {
@@ -4244,8 +4222,6 @@ public abstract class RecentsView<CONTAINER_TYPE extends Context & RecentsViewCo
 
         int count = getTaskViewCount();
         for (int i = 0; i < count; i++) {
-            TaskView tv = getTaskViewAt(i);
-            if (mLockedTasks.contains(tv.getTask().key.getPackageName())) continue;
             addDismissedTaskAnimations(requireTaskViewAt(i), duration, anim);
         }
 
@@ -4351,22 +4327,6 @@ public abstract class RecentsView<CONTAINER_TYPE extends Context & RecentsViewCo
         if (taskView != null) {
             dismissTask(taskView, true /*animateTaskView*/, true /*removeTask*/);
         }
-    }
-
-    private void lockCurrentTask(View view) {
-        TaskView taskView = getCurrentPageTaskView();
-        if (taskView != null) {
-            Task t = taskView.getTask();
-            String pkg = t.key.getPackageName();
-            if (mLockedTasks.contains(pkg)) {
-                mLockedTasks.remove(pkg);
-            } else {
-                mLockedTasks.add(pkg);
-            }
-        }
-        Settings.System.putStringForUser(getContext().getContentResolver(),
-        "recents_locked_tasks", String.join(",", mLockedTasks),
-                UserHandle.USER_CURRENT);
     }
 
     @Override
