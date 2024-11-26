@@ -39,6 +39,16 @@
             android:visibility="gone" />
 
         <Button
+            android:id="@+id/action_lock"
+            style="@style/OverviewActionButton"
+            android:layout_width="60dp"
+            android:layout_height="42dp"
+            android:foreground="@drawable/ic_recents_pin"
+            android:layout_gravity="center_vertical"
+            android:foregroundGravity="center"
+            android:visibility="gone" />
+
+        <Button
             android:id="@+id/action_split"
             style="@style/OverviewActionButton"
             android:layout_width="wrap_content"
