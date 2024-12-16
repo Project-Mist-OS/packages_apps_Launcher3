@@ -61,4 +61,6 @@
     <color name="material_color_primary">#ADC6FF</color>
     <color name="material_color_secondary">#BFC6DC</color>
     <color name="material_color_tertiary">#DEBCDF</color>
+
+    <color name="derp_base_bg">@*android:color/system_accent1_100</color>
 </resources>
