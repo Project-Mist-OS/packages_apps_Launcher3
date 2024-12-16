@@ -183,4 +183,7 @@
     <color name="material_color_primary">#445E91</color>
     <color name="material_color_secondary">#575E71</color>
     <color name="material_color_tertiary">#715573</color>
+
+    <color name="derp_base_bg">@*android:color/system_accent1_600</color>
 </resources>
+
