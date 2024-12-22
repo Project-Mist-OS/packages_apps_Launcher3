@@ -17,21 +17,14 @@
 package com.android.quickstep.inputconsumers;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.provider.Settings;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.android.launcher3.R;
-import com.android.quickstep.util.ImageActionUtils;
+import com.android.launcher3.Utilities;
 import com.android.launcher3.util.ResourceBasedOverride;
 import com.android.launcher3.util.VibratorWrapper;
 import com.android.quickstep.NavHandle;
-import com.android.quickstep.TopTaskTracker;
-
-import com.android.systemui.shared.recents.model.ThumbnailData;
-import com.android.systemui.shared.system.ActivityManagerWrapper;
 
 import java.util.List;
 
@@ -43,15 +36,12 @@ public class NavHandleLongPressHandler implements ResourceBasedOverride {
     private final String TAG = "NavHandleLongPressHandler";
     private boolean DEBUG = false;
 
-    private ThumbnailData mThumbnailData;
-    private TopTaskTracker mTopTaskTracker;
     private Context mContext;
     private VibratorWrapper mVibratorWrapper;
 
     /** Creates NavHandleLongPressHandler as specified by overrides */
-    public NavHandleLongPressHandler(Context context, TopTaskTracker topTaskTracker) {
-        mContext = context;
-        mTopTaskTracker = topTaskTracker;
+    public NavHandleLongPressHandler(Context context) {
+        mContext = context.getApplicationContext();
         mVibratorWrapper = VibratorWrapper.INSTANCE.get(mContext);
     }
 
@@ -67,18 +57,9 @@ public class NavHandleLongPressHandler implements ResourceBasedOverride {
      * @param navHandle to handle this long press
      */
     public @Nullable Runnable getLongPressRunnable(NavHandle navHandle) {
-        if (!isLongPressSearchEnabled()) {
-            return null;
-        }
-        mVibratorWrapper.cancelVibrate();
-        updateThumbnail();
-        if (mThumbnailData != null && mThumbnailData.getThumbnail() != null) {
-            if (DEBUG) Log.d(TAG, "getLongPressRunnable: Google lens should start now");
-            if (ImageActionUtils.startLensSearchActivity(mContext, mThumbnailData.getThumbnail(), null, TAG)) {
-                mVibratorWrapper.vibrateForSearchHint();
-            }
-        } else {
-            if (DEBUG) Log.d(TAG, "getLongPressRunnable: thumbnail is null");
+        if (Utilities.startContextualSearch(mContext)) {
+            mVibratorWrapper.cancelVibrate();
+            mVibratorWrapper.vibrateForSearchHint();
         }
         return null;
     }
@@ -88,26 +69,7 @@ public class NavHandleLongPressHandler implements ResourceBasedOverride {
      *
      * @param navHandle to handle the animation for this touch
      */
-    public void onTouchStarted(NavHandle navHandle) {
-        updateThumbnail();
-    }
-    
-    private boolean isLongPressSearchEnabled() {
-        return Settings.Secure.getInt(
-            mContext.getContentResolver(), "search_press_hold_nav_handle_enabled", 1) == 1;
-    }
-
-    private void updateThumbnail() {
-        if (!isLongPressSearchEnabled()) {
-            return;
-        }
-        String runningPackage = mTopTaskTracker.getCachedTopTask(
-                /* filterOnlyVisibleRecents */ true).getPackageName();
-        int taskId = mTopTaskTracker.getCachedTopTask(
-                /* filterOnlyVisibleRecents */ true).getTaskId();
-        mThumbnailData = ActivityManagerWrapper.getInstance().takeTaskThumbnail(taskId);
-        if (DEBUG) Log.d(TAG, "updateThumbnail running, runningPackage: " + runningPackage);
-    }
+    public void onTouchStarted(NavHandle navHandle) {}
 
     /**
      * Called when nav handle gesture is finished by the user lifting their finger or the system
@@ -116,7 +78,5 @@ public class NavHandleLongPressHandler implements ResourceBasedOverride {
      * @param navHandle to handle the animation for this touch
      * @param reason why the touch ended
      */
-    public void onTouchFinished(NavHandle navHandle, String reason) {
-        mThumbnailData = null;
-    }
+     public void onTouchFinished(NavHandle navHandle, String reason) {}
 }
