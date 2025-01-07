@@ -245,4 +245,6 @@
     <color name="system_tertiary_fixed_dim">#E0BBDD</color>
     <color name="system_on_tertiary_fixed">#2A122C</color>
     <color name="system_on_tertiary_fixed_variant">#593D59</color>
+
+    <color name="derp_base_bg">@*android:color/system_accent1_600</color>
 </resources>

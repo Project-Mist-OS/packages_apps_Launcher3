@@ -17,4 +17,6 @@
 <resources>
     <color name="material_color_surface_container_lowest">#0D0E11</color>
     <color name="material_color_on_surface">#E3E2E6</color>
+
+    <color name="derp_base_bg">@*android:color/system_accent1_100</color>
 </resources>
