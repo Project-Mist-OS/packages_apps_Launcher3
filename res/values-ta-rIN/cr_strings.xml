@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2016-2023 crDroid Android Project
+     Copyright (C) 2016-2023 MistOS Android Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -172,7 +172,7 @@
     <string name="show_quickspace_summary">Show at the top of your home screen</string>
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
     <string name="quick_event_rom_intro_welcome">Crdroid-க்கு வரவேற்கிறோம்!</string>
-    <string name="quick_event_rom_intro_welcome_ext">crDroid time!</string>
+    <string name="quick_event_rom_intro_welcome_ext">MistOS time!</string>
     <string-array name="welcome_message_variants">
         <item>எங்களை தேர்ந்தெடுத்ததற்கு நன்றி</item>
         <item>எங்களை நேசிக்கிறீர்களா? எங்களுக்கு ஒரு பீர் அனுப்புங்கள்</item>
@@ -313,12 +313,12 @@
         <item>வணக்கம், என்ன நடக்கிறது?</item>
         <item>உங்கள் பணிகளில் கவனம் செலுத்துங்கள்</item>
         <item>எத்தனை திரைப்பதிவுகளை எடுக்கிறீர்கள்?</item>
-        <item>CrDroid உடன் நன்மைகளை அனுபவிங்கள்</item>
+        <item>MistOS உடன் நன்மைகளை அனுபவிங்கள்</item>
         <item>Spread love, not havoc</item>
         <item>We didn\'t start the fire!</item>
         <item>இது நல்ல இசைக்கான நேரம்</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C HEAD</item>
-        <item>இதைப் பார்க்க உங்களுக்கு crDroid பிரீமியம் தேவை</item>
+        <item>இதைப் பார்க்க உங்களுக்கு MistOS பிரீமியம் தேவை</item>
         <item>யூனிகார்னின் பரம்பரையை நினைவில் கொள்க</item>
         <item>நீட்டிக்கப்பட்ட மின்கல ஆயுளை அனுபவிக்கவும்</item>
         <item>முதலில் இருந்து தொடங்குகிறது</item>
