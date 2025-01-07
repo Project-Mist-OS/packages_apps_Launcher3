@@ -425,4 +425,10 @@
     <string name="force_monochrome_icons_summary">Generate monochromatic icons, if not supported by the app (requires re-toggling of themed icons)</string>
     
     <string name="app_info_title">Application Info</string>
+
+    <!-- Themed icons toggle -->
+    <string name="themed_icons_title">Themed icons</string>
+    <string name="themed_icons_summary_on">Themed icons enabled</string>
+    <string name="themed_icons_summary_off">Themed icons disabled</string>
+
 </resources>
