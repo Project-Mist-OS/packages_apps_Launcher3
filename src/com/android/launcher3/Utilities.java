@@ -1132,7 +1132,7 @@ public final class Utilities {
     }
 
     public static int getRecentsOpacity(Context context) {
-        return getLauncher() == 2 ? 100 : 0;
+        return getLauncher() == 2 ? 100 : 40;
     }
 
     public static int getAllAppsOpacity(Context context) {
