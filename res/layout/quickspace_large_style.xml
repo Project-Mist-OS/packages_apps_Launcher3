@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/SlateForOnePlus-Bold"
         android:textColor="?workspaceTextColor"
-        android:textSize="80sp"
+        android:textSize="95sp"
         android:format12Hour="h:mm"
         android:format24Hour="H:mm"
         android:includeFontPadding="false" />
