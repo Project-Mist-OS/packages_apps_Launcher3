@@ -339,6 +339,52 @@
         <item>Мы любим вас, нас уже больше 3000</item>
     </string-array>
     <string name="intent_no_app_clock_found">Невозможно найти календарь или часы</string>
+	    <!-- clear home screen -->
+    <string name="home_screen_actions">Действия на главном экране</string>
+    <string name="remove_all_views_from_home_screen">Очистить главный экран</string>
+    <string name="remove_all_views_from_home_screen_desc">Главный экран будет очищен. Вы хотите продолжить?</string>
+
+    <!-- Message shown when all home screen views are removed -->
+    <string name="home_screen_all_views_removed_msg">Главный экран очищен</string>
+
+    <!-- QSB style -->
+    <string name="qsb_style_google_title">Поисковая строка в стиле Google</string>
+    <string name="qsb_style_google_summary">Используйте дизайн QSB с кнопками AI и Lens.</string>
+	    <!-- App drawer styles -->
+    <string name="drawer_style_title">Стиль меню приложений</string>
+    <string name="drawer_style_normal">Нормальный (нижний лист)</string>
+    <string name="drawer_style_legacy">Устаревший полноэкранный</string>
+    <string name="drawer_style_list">В виде списка</string>
+    <string name="drawer_style_oneui">Стиль OneUI (страничный)</string>
+    <string name="drawer_style_ios">Cтиль iOS (только главный экран)</string>
+    <string name="auto_add_shortcuts_forced_ios_summary">Включается автоматически, пока активен стиль iOS.</string>
+
+    <!-- App drawer sorting -->
+    <string name="app_drawer_sort_mode_title">Сортировка меню приложений</string>
+    <string name="app_drawer_sort_alphabetical">Сортировать по алфавиту</string>
+    <string name="app_drawer_sort_install_date">Сортировать по дате установки</string>
+    <string name="app_drawer_sort_usage">По частоте использования</string>
+	<!-- App drawer color -->
+    <string name="pref_app_drawer_custom_color_title">Свой цвет фона</string>
+    <string name="pref_app_drawer_custom_color_summary">Использовать свой цвет фона для меню приложений</string>
+    <string name="pref_app_drawer_custom_color_light_title">Цвет светлого режима</string>
+    <string name="pref_app_drawer_custom_color_dark_title">Цвет тёмного режима</string>
+	   <!-- Pinned Apps -->
+    <string name="pref_pinned_apps_enabled_title">Включить закреплённые приложения</string>
+    <string name="pref_pinned_apps_enabled_summary">Отобразить ряд закрепленных приложений под строкой поиска.</string>
+    <string name="pref_pinned_apps_list_title">Список закрепленных приложений</string>
+    <string name="pref_pinned_apps_list_summary">Выберите приложения для закрепления.</string>
+	    <!-- Dark app drawer text -->
+    <string name="all_apps_dark_text_title">Тёмные названия приложений</string>
+    <string name="all_apps_dark_text_summary">Использовать тёмный текст для названия приложений</string>
+	    <!-- Freeform gesture -->
+    <string name="freeform_gesture_title">Используйте жест в списке последних приложений, чтобы запустить режим свободного окна.</string>
+    <string name="freeform_gesture_summary">Проведите пальцем вверх от верхней части экрана последних приложений и отпустите, чтобы активировать режим свободного окна.</string>
+    <string name="freeform_gesture_progress_title">Freeform swipe threshold</string>
+    <string name="freeform_gesture_progress_summary">Более низкие значения запускают свободный режим раньше, более высокие значения требуют свайпа ближе к верхней части экрана.</string>
+    <string name="freeform_gesture_threshold_reached">Нажмите, чтобы запустить плавающее окно.</string>
+	 <string name="recents_overview_style_title">Новый стиль обзора</string>
+    <string name="recents_overview_style_summary">Используйте обновленные кнопки действий в списке последних приложений</string>
     <!-- QuickSpace: QuickEvent: Weather -->
     <string name="quickspace_weather_provider_title">Поставщик погоды</string>
     <string name="quickspace_weather_provider_entry_auto">Авто</string>
